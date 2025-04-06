@@ -5,7 +5,10 @@ import { DataSharingServiceService } from '../data-sharing-service.service';
 import { GoogleGenAI } from "@google/genai";
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import * as fs from "node:fs";
+import { Buffer } from 'buffer';
+import path, { dirname } from 'node:path';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-plant',
@@ -19,7 +22,7 @@ export class PlantComponent implements OnInit {
   punDescription: any = '';
   shortDescription: any = '';
   ai = new GoogleGenAI({ apiKey: "AIzaSyBUiOoBA_vCKxwiqMjdT8VXF5DBMGTqn74" });
-
+//OpenAI = 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
   sunlight: number = 8;  // percentage (0–100)
   hourConversation:number = Math.max((this.sunlight/12))*100;
   
@@ -32,15 +35,19 @@ export class PlantComponent implements OnInit {
 
 
 
+ 
+
+
   constructor( private _Activatedroute: ActivatedRoute,
-      private _router: Router, private dataSharing: DataSharingServiceService) {
+      private _router: Router, private dataSharing: DataSharingServiceService, private apiService: ApiService) {
       this.subscription = this.dataSharing.currentMessage.subscribe((message) => (this.message = message));
      }
 
 
     ngOnInit(): void {
      console.log(this.message);
-     this.main();
+     //this.main();
+     this.imageGeneration();
     }
     ngOnDestroy() {
       this.subscription.unsubscribe();
@@ -49,7 +56,7 @@ export class PlantComponent implements OnInit {
     async main(){
       const response = await this.ai.models.generateContent({
           model: "gemini-2.0-flash",
-          contents: `Provide your response in a # separated list format. For the first item in the list, provide a one line pun about ${this.message}. For the second item in the list provide a brief description of ${this.message}, suitable for a beginner, in 2-3 lines. For the third item provide a whole number, between 1 and 12 hours of sunlight how many hours of sunlight does ${this.message} plant need.`,
+          contents: `Provide your response in a # separated list format. DO NOT add numbers before your responses. For the first item in the list, provide a one line pun about ${this.message}. For the second item in the list provide a brief description of ${this.message}, suitable for a beginner, in 2-3 lines. For the third item provide a whole number, between 1 and 12 hours of sunlight how many hours of sunlight does ${this.message} plant need.`,
         });
         console.log(response.text);
         var splitResponse = response.text?.split("#"); 
@@ -66,6 +73,40 @@ export class PlantComponent implements OnInit {
         )`;
     }
     
-    
+    async imageGeneration() {
+      if(this.message == "default message"){
+        this.message = "strawberry";
+      }
+
+      
+      const contents =
+      `Generate image of what a ${this.message} plant will look like when its ready for harvest. Show the whole plant.`;
+  
+       var response = await this.ai.models.generateContent({
+        model: "gemini-2.0-flash-exp-image-generation",
+        contents: contents,
+        config: {
+          responseModalities: ["Text", "Image"],
+        },
+      });
+      for (const part of response!.candidates![0].content!.parts!) {
+        // Based on the part type, either show the text or save the image
+        if (part.text) {
+          console.log(part.text);
+        } else if (part.inlineData) {
+          var imageData:any = part.inlineData.data;
+          var buffer = Buffer.from(imageData!, "base64");
+          
+          fs.writeFileSync("../../assets/aigeneratedimage.png", buffer!);
+          console.log("Image saved as aigeneratedimage.png");
+        }
+      }
+  
+      // const response = await this.ai.models.generateContent({
+      //   model: "gemini-2.0-flash",
+      //   contents: "Explain how AI works in a few words",
+      // });
+      // console.log(response.text);
+    }
     
 }
