@@ -1,7 +1,7 @@
 <div class="b-example-divider"></div>
 
   <div class="container px-4 py-5">
-    <h2 class="pb-2 border-bottom">Guide to grow {{message}}</h2>
+    <h2 class="pb-2 border-bottom">Guide to grow {{plantName}}</h2>
 
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
       <div class="col d-flex flex-column align-items-start gap-2">
@@ -21,7 +21,7 @@
                     </div>
                   </div>
             </div>
-            <h5 class="fw-semibold mb-0 text-body-emphasis">{{message}} needs {{sunlight}} hours of sunlight in a day.</h5>
+            <h5 class="fw-semibold mb-0 text-body-emphasis">{{plantName}} needs {{sunlight}} hours of sunlight in a day.</h5>
             <p class="text-body-secondary">Max: 12 hours of sunlight in a day.</p>
           </div>
 
@@ -34,13 +34,30 @@
   </div>
 
   
-  <div class="container px-4 py-5">
-    <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
+  <div class="container px-4 py-1">
+    <div class="p-1 mb-3 bg-body-tertiary rounded border-bottom">
         <h4 class="fst-italic">Step by step</h4>
        
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
         <h5>Timing</h5>
-        <p>Spring: Sow seeds 4-6 weeks before the last expected frost.</p>
+        <p>{{bestMonthToSow}}: {{sowInstructions}}</p>
+    </div>
+    <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
+        <h5>Soil</h5>
+        <p>Type of soil: {{typeOfSoil}}</p>
+        <p>Soil pH: {{soilpH}}</p>
+    </div>
+    <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
+        <h5>Planting</h5>
+        <p>Sowing: Direct/Indirect</p>
+        <p>Depth: Direct/Indirect</p>
+        <p>Germination: Direct/Indirect</p>
+    </div>
+    <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
+        <h5>Watering</h5>
+        <p>Sowing: Direct/Indirect</p>
+        <p>Depth: Direct/Indirect</p>
+        <p>Germination: Direct/Indirect</p>
     </div>
   </div>

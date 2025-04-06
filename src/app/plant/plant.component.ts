@@ -17,10 +17,27 @@ import { ApiService } from '../api.service';
   styleUrl: './plant.component.css'
 })
 export class PlantComponent implements OnInit {
-  message: string = '';
-  subscription: Subscription;
+  plantName: string = '';
+  cityName: string = '';
+
+  plantSubscription: Subscription;  
+  citySubscription: Subscription;
   punDescription: any = '';
   shortDescription: any = '';
+  bestMonthToSow: any = '';
+  sowInstructions: any = '';
+  typeOfSoil: any = '';
+  soilpH: any = '';
+  sowingMethod: any = '';
+  sowingMethodDescription: any = '';
+  sowingDepth: any = '';
+  germination: any = '';
+  pests: any = '';
+  pesticides: any = '';
+
+
+
+
   ai = new GoogleGenAI({ apiKey: "AIzaSyBUiOoBA_vCKxwiqMjdT8VXF5DBMGTqn74" });
   sunlight: number = 8;  // percentage (0–100)
   hourConversation:number = Math.max((this.sunlight/12))*100;
@@ -39,23 +56,40 @@ export class PlantComponent implements OnInit {
 
   constructor( private _Activatedroute: ActivatedRoute,
       private _router: Router, private dataSharing: DataSharingServiceService, private apiService: ApiService) {
-      this.subscription = this.dataSharing.currentMessage.subscribe((message) => (this.message = message));
+      this.plantSubscription = this.dataSharing.currentPlant.subscribe((message) => (this.plantName = message));
+      this.citySubscription = this.dataSharing.currentCity.subscribe((message) => (this.cityName = message));
      }
 
 
     ngOnInit(): void {
-     console.log(this.message);
+     console.log(this.plantName);
      this.main();
      //this.imageGeneration();
     }
     ngOnDestroy() {
-      this.subscription.unsubscribe();
+      this.plantSubscription.unsubscribe();
+      this.citySubscription.unsubscribe();
     }
 
     async main(){
       const response = await this.ai.models.generateContent({
           model: "gemini-2.0-flash",
-          contents: `Provide your response in a # separated list format. DO NOT add numbers before your responses. For the first item in the list, provide a one line pun about ${this.message}. For the second item in the list provide a brief description of ${this.message}, suitable for a beginner, in 2-3 lines. For the third item provide a whole number, between 1 and 12 hours of sunlight how many hours of sunlight does ${this.message} plant need.`,
+          contents: `Provide your response in a # separated list format. 
+          DO NOT add numbers before your responses. 
+          For the first item in the list, provide a one line pun about ${this.plantName}. 
+          For the second item in the list provide a brief description of ${this.plantName}, suitable for a beginner, in 2-3 lines. 
+          For the third item provide a whole number, between 1 and 12 hours of sunlight how many hours of sunlight does ${this.plantName} plant need. Don't just give me 6 everytime.
+          For the fourth item provide which exact month to sow seeds for ${this.plantName} plant in ${this.cityName} location.
+          For fifth item, provide a short instruction on how to carry out fourth item.
+          For sixth item, choose one soil type that is suitable for ${this.plantName} plant and provide a short description of the choose soil type.
+          For seventh item, provide what soil pH to have for ${this.plantName} plant
+          For eigth item, choose one sowing method for ${this.plantName} plant from (Broadcasting, Drilling, Dibbling, Hill planting, Indoor sowing, Seedbed sowing, Transplanting).
+          For ninth item, provide a short description on how to carry out eigth item.
+          For tenth item, provide the depth at which to sow for ${this.plantName} plant.
+          For eleventh item, provide one type of germination for ${this.plantName} plant, followed by a short description.
+          For twelfth item, provide a list of Pests that ${this.plantName} plant will attract in ${this.cityName} location.
+          For thirteenth item, provide a list of pesticides that can be used on ${this.plantName} plant.`,
+          
         });
         console.log(response.text);
         var splitResponse = response.text?.split("#"); 
@@ -63,6 +97,16 @@ export class PlantComponent implements OnInit {
         this.punDescription = splitResponse![1];
         this.shortDescription = splitResponse![2];
         this.sunlight = parseInt(splitResponse![3]) ;
+        this.bestMonthToSow =  splitResponse![4];
+        this.sowInstructions = splitResponse![5];
+        this.typeOfSoil  = splitResponse![6];
+        this.soilpH = splitResponse![7];
+        this.sowingMethod = splitResponse![8];
+        this.sowingMethodDescription = splitResponse![9];
+        this.sowingDepth = splitResponse![10];
+        this.germination = splitResponse![11];
+        this.pests = splitResponse![12];
+        this.pesticides = splitResponse![13];
 
         this.hourConversation = Math.max((this.sunlight/12))*100;
         this.percent = Math.min(Math.max(this.hourConversation, 0), 100); // clamp 0–100
@@ -73,13 +117,13 @@ export class PlantComponent implements OnInit {
     }
     
     // async imageGeneration() {
-    //   if(this.message == "default message"){
-    //     this.message = "strawberry";
+    //   if(this.plantName == "default message"){
+    //     this.plantName = "strawberry";
     //   }
 
       
     //   const contents =
-    //   `Generate image of what a ${this.message} plant will look like when its ready for harvest. Show the whole plant.`;
+    //   `Generate image of what a ${this.plantName} plant will look like when its ready for harvest. Show the whole plant.`;
   
     //    var response = await this.ai.models.generateContent({
     //     model: "gemini-2.0-flash-exp-image-generation",
