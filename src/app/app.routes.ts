@@ -5,12 +5,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
-    { path: '', component: AppComponent},
-    {path: 'index', component:HomepageComponent},
+    {path: '', component:HomepageComponent},
     { path:'plant', component:PlantComponent},
+  
 ];
-@NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
-  })
-  export class AppRoutingModule { }

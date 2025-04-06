@@ -19,7 +19,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm mb-4" *ngFor="let element of searchResultsArray; let i = index">
-          <button class="button-55" role="button">{{element}}</button>
+          <button class="button-55" role="button" (click)="plantClicked(i)">{{element}}</button>
           
         </div>
         

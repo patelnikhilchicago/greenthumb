@@ -6,6 +6,7 @@ import * as fs from "node:fs";
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { DataSharingServiceService } from '../data-sharing-service.service';
 
 @Component({
   selector: 'app-homepage',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private datasharing: DataSharingServiceService) { }
 
   @Input() sunlight: number = 80;  // percentage (0–100)
   percent = Math.min(Math.max(this.sunlight, 0), 100); // clamp 0–100
@@ -96,6 +97,11 @@ export class HomepageComponent {
 
 
   buttonClicked(){
+    this.router.navigate(['plant']);
+  }
+
+  plantClicked(index: any){
+    this.datasharing.changeMessage(this.searchResultsArray[index]);
     this.router.navigate(['plant']);
   }
 
