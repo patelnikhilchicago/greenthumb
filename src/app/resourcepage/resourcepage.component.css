@@ -1,0 +1,68 @@
+.resources-container {
+    background-color: #ffddab;
+    border-radius: 12px;
+    padding: 2rem;
+  }
+  
+  .search-box input {
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.3s;
+  }
+  
+  .search-box input:focus {
+    outline: none;
+    border-color: #5f8b4c;
+    box-shadow: 0 0 8px rgba(95, 139, 76, 0.2);
+  }
+  
+  .resource-card {
+    background-color: #fff;
+    border-left: 6px solid #5f8b4c;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .resource-title {
+    font-weight: bold;
+    color: #4e7737;
+  }
+  
+  .resource-desc {
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+  .resource-link {
+    color: #2e7d32;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .resource-link:hover {
+    text-decoration: underline;
+  }
+  .resource-link[href*="youtube.com"]::before {
+    content: '📺 ';
+  }
+  
+  @media (max-width: 768px) {
+    .resources-container {
+      padding: 1rem;
+    }
+  
+    .resource-title {
+      font-size: 1.1rem;
+    }
+  
+    .resource-desc {
+      font-size: 0.9rem;
+    }
+  }  
