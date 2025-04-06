@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DataSharingServiceService } from '../data-sharing-service.service';
 import { GoogleGenAI } from "@google/genai";
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-plant',
-  imports: [],
+  imports: [ FormsModule, CommonModule],
   templateUrl: './plant.component.html',
   styleUrl: './plant.component.css'
 })
@@ -17,6 +19,18 @@ export class PlantComponent implements OnInit {
   punDescription: any = '';
   shortDescription: any = '';
   ai = new GoogleGenAI({ apiKey: "AIzaSyBUiOoBA_vCKxwiqMjdT8VXF5DBMGTqn74" });
+
+  sunlight: number = 8;  // percentage (0–100)
+  hourConversation:number = Math.max((this.sunlight/12))*100;
+  
+  percent = Math.min(Math.max(this.hourConversation, 0), 100); // clamp 0–100
+  
+  progressStyle: string = `conic-gradient(
+    #fbbc04 0% ${this.percent}%,
+    #e0e0e0 ${this.percent}% 100%
+  )`;
+
+
 
   constructor( private _Activatedroute: ActivatedRoute,
       private _router: Router, private dataSharing: DataSharingServiceService) {
@@ -35,13 +49,21 @@ export class PlantComponent implements OnInit {
     async main(){
       const response = await this.ai.models.generateContent({
           model: "gemini-2.0-flash",
-          contents: `Provide your response in a # separated list format. For the first item in the list, provide a one line pun about ${this.message}. For the second item in the list provide a brief description of ${this.message}, suitable for a beginner, in 2-3 lines.`,
+          contents: `Provide your response in a # separated list format. For the first item in the list, provide a one line pun about ${this.message}. For the second item in the list provide a brief description of ${this.message}, suitable for a beginner, in 2-3 lines. For the third item provide a whole number, between 1 and 12 hours of sunlight how many hours of sunlight does ${this.message} plant need.`,
         });
         console.log(response.text);
         var splitResponse = response.text?.split("#"); 
         
         this.punDescription = splitResponse![1];
         this.shortDescription = splitResponse![2];
+        this.sunlight = parseInt(splitResponse![3]) ;
+
+        this.hourConversation = Math.max((this.sunlight/12))*100;
+        this.percent = Math.min(Math.max(this.hourConversation, 0), 100); // clamp 0–100
+        this.progressStyle = `conic-gradient(
+          #fbbc04 0% ${this.percent}%,
+          #e0e0e0 ${this.percent}% 100%
+        )`;
     }
     
     

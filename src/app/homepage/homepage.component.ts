@@ -17,15 +17,6 @@ import { DataSharingServiceService } from '../data-sharing-service.service';
 export class HomepageComponent {
   constructor(private router: Router, private datasharing: DataSharingServiceService) { }
 
-  @Input() sunlight: number = 80;  // percentage (0–100)
-  percent = Math.min(Math.max(this.sunlight, 0), 100); // clamp 0–100
-  progressStyle: string = `conic-gradient(
-    #fbbc04 0% ${this.percent}%,
-    #e0e0e0 ${this.percent}% 100%
-  )`;
-
-  
-   
 
   
 
