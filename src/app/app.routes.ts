@@ -6,6 +6,6 @@ import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
     {path: '', component:HomepageComponent},
-    { path:'plant', component:PlantComponent},
+    { path:'plant', component:PlantComponent}
   
 ];
