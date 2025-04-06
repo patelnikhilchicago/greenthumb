@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { GoogleGenAI } from "@google/genai";
 import * as fs from "node:fs";
 import { FormsModule } from '@angular/forms';
-import { compileFromFile } from 'json-schema-to-typescript';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,6 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'greenthumbs';
   ai = new GoogleGenAI({ apiKey: "AIzaSyBUiOoBA_vCKxwiqMjdT8VXF5DBMGTqn74" });
