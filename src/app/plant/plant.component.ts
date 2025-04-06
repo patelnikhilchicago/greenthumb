@@ -32,6 +32,14 @@ export class PlantComponent implements OnInit {
     #e0e0e0 ${this.percent}% 100%
   )`;
 
+  water : number = 8;  // percentage (0–100)
+  waterConversation:number = Math.max((this.water/10))*100;
+  waterPercent = Math.min(Math.max(this.waterConversation, 0), 100); // clamp 0–100
+  progressStyleW: string = `conic-gradient(
+rgb(31, 9, 234) 0% ${this.waterPercent}%,
+    #e0e0e0 ${this.waterPercent}% 100%
+  )`;
+
 
 
  
@@ -55,7 +63,7 @@ export class PlantComponent implements OnInit {
     async main(){
       const response = await this.ai.models.generateContent({
           model: "gemini-2.0-flash",
-          contents: `Provide your response in a # separated list format. DO NOT add numbers before your responses. For the first item in the list, provide a one line pun about ${this.message}. For the second item in the list provide a brief description of ${this.message}, suitable for a beginner, in 2-3 lines. For the third item provide a whole number, between 1 and 12 hours of sunlight how many hours of sunlight does ${this.message} plant need.`,
+          contents: `Provide your response in a # separated list format. DO NOT add numbers before your responses. For the first item in the list, provide a one line pun about ${this.message}. For the second item in the list provide a brief description of ${this.message}, suitable for a beginner, in 2-3 lines. For the third item provide a whole number, between 1 and 12 hours of sunlight how many hours of sunlight does ${this.message} plant need. For the fourth item provide a whole number, between 1 and 10, how many times in a day does ${this.message} plant needs to be watered.`,
         });
         console.log(response.text);
         var splitResponse = response.text?.split("#"); 
@@ -63,12 +71,20 @@ export class PlantComponent implements OnInit {
         this.punDescription = splitResponse![1];
         this.shortDescription = splitResponse![2];
         this.sunlight = parseInt(splitResponse![3]) ;
+        this.water = parseInt(splitResponse![4]) ;
 
         this.hourConversation = Math.max((this.sunlight/12))*100;
         this.percent = Math.min(Math.max(this.hourConversation, 0), 100); // clamp 0–100
         this.progressStyle = `conic-gradient(
           #fbbc04 0% ${this.percent}%,
           #e0e0e0 ${this.percent}% 100%
+        )`;
+
+        this.waterConversation = Math.max((this.water/10))*100;
+        this.waterPercent = Math.min(Math.max(this.waterConversation, 0), 100); // clamp 0–100
+        this.progressStyleW= `conic-gradient(
+        rgb(31, 9, 234) 0% ${this.waterPercent}%,
+        #e0e0e0 ${this.waterPercent}% 100%
         )`;
     }
     

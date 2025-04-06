@@ -24,6 +24,20 @@
             <h5 class="fw-semibold mb-0 text-body-emphasis">{{message}} needs {{sunlight}} hours of sunlight in a day.</h5>
             <p class="text-body-secondary">Max: 12 hours of sunlight in a day.</p>
           </div>
+          <div class="col">
+            <div class="row row-cols-1 row-cols-sm-2 g-4">
+              <div class="col d-flex flex-column gap-2">
+                <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
+                    <div class="progress-container" [ngStyle]="{'background': progressStyleW}">
+                        <div class="progress-inner">
+                          <div class="water-icon">💧</div>
+                          <div>{{ water }} gallons</div>
+                        </div>
+                      </div>
+                </div>
+                <h5 class="fw-semibold mb-0 text-body-emphasis">{{message}} needs {{water}} gallons of water in a day.</h5>
+                <p class="text-body-secondary">Max: 10 gallons of water per day.</p>
+              </div>
 
          
 
