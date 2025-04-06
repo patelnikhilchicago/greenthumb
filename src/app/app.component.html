@@ -43,25 +43,28 @@
 <div>
   <div class="container">
     <div class="row">
-      <div class="col-sm" *ngFor="let element of searchResultsArray; let i = index">
-        <div class="card" style="width: 18rem;">
-          <img src="../../public/Placeholder_view_vector.svg.png" width="50px" height="50px" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">{{element}}</p>
-          </div>
-        </div>
+      <div class="col-sm mb-4" *ngFor="let element of searchResultsArray; let i = index">
+        <button class="button-55" role="button">{{element}}</button>
         
       </div>
       
     </div>
   </div>
-  <ul class="list-group">
+  <!-- <ul class="list-group">
     <li class="list-group-item"  *ngFor="let element of searchResultsArray; let i = index">{{element}}</li>
     <li class="list-group-item">Dapibus ac facilisis in</li>
     <li class="list-group-item">Morbi leo risus</li>
     <li class="list-group-item">Porta ac consectetur ac</li>
     <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
+  </ul> -->
+</div>
+
+<div class="progress-container" [ngStyle]="{'background': progressStyle}">
+  <div class="progress-inner">
+    <div class="sun-icon">☀️</div>
+    <div>{{ sunlight }}%</div>
+  </div>
+  <div class="label">Sunlight</div>
 </div>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
