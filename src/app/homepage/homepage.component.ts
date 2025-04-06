@@ -2,11 +2,12 @@
 import { AfterViewInit, Component, ElementRef, ViewChild, Input, OnChanges  } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GoogleGenAI } from "@google/genai";
-import * as fs from "node:fs";
+
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { DataSharingServiceService } from '../data-sharing-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -15,10 +16,12 @@ import { DataSharingServiceService } from '../data-sharing-service.service';
   styleUrl: './homepage.component.css'
 })
 export class HomepageComponent {
-  constructor(private router: Router, private datasharing: DataSharingServiceService) { }
+  constructor(private router: Router, private datasharing: DataSharingServiceService) { 
+     this.citySubscription = this.datasharing.currentCity.subscribe((message) => (this.searchInput = message));
+  }
 
 
-  
+  citySubscription: Subscription;
 
   title = 'greenthumbs';
   ai = new GoogleGenAI({ apiKey: "AIzaSyBUiOoBA_vCKxwiqMjdT8VXF5DBMGTqn74" });
@@ -26,8 +29,10 @@ export class HomepageComponent {
   searchResults: any;
   searchResultsArray!: string[];
   ngOnInit(): void{
-    //this.main();
-    
+    if(this.datasharing.getSearchResults().length > 1){
+      this.searchResultsArray = this.datasharing.getSearchResults();
+    }
+    //console.log("This is the search array element #2 " + this.searchResultsArray[2]);
   }
 
 
@@ -47,6 +52,9 @@ export class HomepageComponent {
       console.log(element);
     }));
 
+    this.datasharing.changeCity(this.searchInput);
+    this.datasharing.setSearchResults(this.searchResultsArray);
+
   }
 
   async Search(){
@@ -54,37 +62,7 @@ export class HomepageComponent {
     this.searchBasedonCity();
   }
 
-  async main() {
-    const contents =
-    "Hi! Generate an image of strawberry plant that is ready to be harvested. " +
-    "The whole strawberry plant should be visible in the image " +
-    "the plant should be in a backyard.";
-
-     var response = await this.ai.models.generateContent({
-      model: "gemini-2.0-flash-exp-image-generation",
-      contents: contents,
-      config: {
-        responseModalities: ["Text", "Image"],
-      },
-    });
-    for (const part of response!.candidates![0].content!.parts!) {
-      // Based on the part type, either show the text or save the image
-      if (part.text) {
-        console.log(part.text);
-      } else if (part.inlineData) {
-        var imageData:any = part.inlineData.data;
-        var buffer = Buffer.from(imageData!, "base64");
-        fs.writeFileSync("gemini-native-image.png", buffer);
-        console.log("Image saved as gemini-native-image.png");
-      }
-    }
-
-    // const response = await this.ai.models.generateContent({
-    //   model: "gemini-2.0-flash",
-    //   contents: "Explain how AI works in a few words",
-    // });
-    // console.log(response.text);
-  }
+  
 
 
   buttonClicked(){
