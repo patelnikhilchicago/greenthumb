@@ -1,6 +1,7 @@
-<div class="b-example-divider"></div>
-
-  <div class="container px-4 py-5">
+  <div class="container px-2 py-5" style="
+  background-color: #5F8B4C;
+  border-radius: 5px;
+  color: #fff;">
     <h2 class="pb-2 border-bottom">Guide to grow {{plantName}}</h2>
 
     <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
@@ -12,12 +13,12 @@
 
       <div class="col">
         <div class="row row-cols-1 row-cols-sm-2 g-4">
-          <div class="col d-flex flex-column gap-2">
+          <div class="col d-flex flex-column gap-2" style="text-align: center;">
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                 <div class="progress-container" [ngStyle]="{'background': progressStyle}">
-                    <div class="progress-inner">
+                    <div class="progress-inner" style="background-color: #faf1e3;">
                       <div class="sun-icon">☀️</div>
-                      <div>{{ sunlight }} Hours</div>
+                      <div style="color: #FBBC04;">{{ sunlight }} Hours</div>
                     </div>
                   </div>
             </div>
@@ -34,30 +35,35 @@
   </div>
 
   
-  <div class="container px-4 py-1">
+  <div class="container px-4 py-1" style="background-color: #FFDDAB;">
     <div class="p-1 mb-3 bg-body-tertiary rounded border-bottom">
-        <h4 class="fst-italic">Step by step</h4>
+        <h4 class="fst-italic" style="
+        color: #5F8B4C;
+        font-weight: bolder;">Step by step</h4>
        
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
-        <h5>Timing</h5>
-        <p>{{bestMonthToSow}}: {{sowInstructions}}</p>
+        <h5 style="
+        color: #5F8B4C;">Timing</h5>
+        <p><span style="font-weight: bold;">{{bestMonthToSow}}:</span>  {{sowInstructions}}</p>
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
-        <h5>Soil</h5>
-        <p>Type of soil: {{typeOfSoil}}</p>
-        <p>Soil pH: {{soilpH}}</p>
+        <h5 style="
+        color: #5F8B4C;">Soil</h5>
+        <p><span style="font-weight: bold;">Type of soil:</span> {{typeOfSoil}}</p>
+        <p><span style="font-weight: bold;">Soil pH:</span> {{soilpH}}</p>
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
-        <h5>Planting</h5>
-        <p>Sowing: Direct/Indirect</p>
-        <p>Depth: Direct/Indirect</p>
-        <p>Germination: Direct/Indirect</p>
+        <h5 style="
+        color: #5F8B4C;">Planting</h5>
+        <p><span style="font-weight: bold;">Sowing:</span> {{sowingMethod}}: {{sowingMethodDescription}}</p>
+        <p><span style="font-weight: bold;">Depth:</span> {{sowingDepth}}</p>
+        <p><span style="font-weight: bold;">Germination:</span> {{germination}}</p>
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
-        <h5>Watering</h5>
-        <p>Sowing: Direct/Indirect</p>
-        <p>Depth: Direct/Indirect</p>
-        <p>Germination: Direct/Indirect</p>
+        <h5 style="
+        color: #5F8B4C;">Care</h5>
+        <p><span style="font-weight: bold;">Pests:</span> {{pests}}</p>
+        <p><span style="font-weight: bold;">Pesticides:</span> {{pesticides}}</p>
     </div>
   </div>
