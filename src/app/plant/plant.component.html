@@ -4,9 +4,9 @@
   color: #fff;">
     <h2 class="pb-2 border-bottom">Guide to grow {{plantName}}</h2>
 
-    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5   ">
       <div class="col d-flex flex-column align-items-start gap-2">
-        <h3 class="fw-bold text-body-emphasis">{{punDescription}} <img src="../../assets/lol.png" height="50px" width="50px" /></h3>
+        <h3 class="fw-bold text-body-emphasis">{{punDescription}} <img src="../../assets/lol.png" height="50px" width="50px"/></h3>
         <p class="text-body-secondary">{{shortDescription}}</p>
        
       </div>
@@ -17,8 +17,8 @@
             <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                 <div class="progress-container" [ngStyle]="{'background': progressStyle}">
                     <div class="progress-inner" style="background-color: #faf1e3;">
-                      <div class="sun-icon">☀️</div>
-                      <div style="color: #FBBC04;">{{ sunlight }} Hours</div>
+                      <div class="sun-icon  " >☀️</div>
+                      <div style="color: #FBBC04;" class="glow">{{ sunlight }} Hours</div>
                     </div>
                   </div>
             </div>
@@ -31,12 +31,12 @@
                 <div class="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                     <div class="progress-container" [ngStyle]="{'background': progressStyleW}">
                         <div class="progress-inner">
-                          <div class="water-icon">💧</div>
-                          <div>{{ water }} gallons</div>
+                          <div class="water-icon  ">💧</div>
+                          <div style="color: rgb(31, 9, 234)" class="glow">{{ water}} gallons</div>
                         </div>
                       </div>
                 </div>
-                <h5 class="fw-semibold mb-0 text-body-emphasis">{{message}} needs {{water}} gallons of water in a day.</h5>
+                <h5 class="fw-semibold mb-0 text-body-emphasis">{{plantName}} needs {{water}} gallons of water in a day.</h5>
                 <p class="text-body-secondary">Max: 10 gallons of water per day.</p>
               </div>
 
@@ -49,7 +49,7 @@
   </div>
 
   
-  <div class="container px-4 py-1" style="background-color: #FFDDAB;">
+  <div class="container px-4 py-1 " style="background-color: #FFDDAB;">
     <div class="p-1 mb-3 bg-body-tertiary rounded border-bottom">
         <h4 class="fst-italic" style="
         color: #5F8B4C;
@@ -59,25 +59,25 @@
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
         <h5 style="
         color: #5F8B4C;">Timing</h5>
-        <p><span style="font-weight: bold;">{{bestMonthToSow}}:</span>  {{sowInstructions}}</p>
+        <p style="color: #333333;"><span style="color: #333333;" style="font-weight: bold;">{{bestMonthToSow}}:</span>  {{sowInstructions}}</p>
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
         <h5 style="
         color: #5F8B4C;">Soil</h5>
-        <p><span style="font-weight: bold;">Type of soil:</span> {{typeOfSoil}}</p>
-        <p><span style="font-weight: bold;">Soil pH:</span> {{soilpH}}</p>
+        <p style="color: #333333;"><span style="color: #333333;"style="font-weight: bold;">Type of soil:</span> {{typeOfSoil}}</p>
+        <p style="color: #333333;"><span style="color: #333333;"style="font-weight: bold;">Soil pH:</span> {{soilpH}}</p>
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
         <h5 style="
         color: #5F8B4C;">Planting</h5>
-        <p><span style="font-weight: bold;">Sowing:</span> {{sowingMethod}}: {{sowingMethodDescription}}</p>
-        <p><span style="font-weight: bold;">Depth:</span> {{sowingDepth}}</p>
-        <p><span style="font-weight: bold;">Germination:</span> {{germination}}</p>
+        <p style="color: #333333;"><span style="color: #333333;" style="font-weight: bold;">Sowing:</span> {{sowingMethod}}: {{sowingMethodDescription}}</p>
+        <p style="color: #333333;"><span style="color: #333333;" style="font-weight: bold;">Depth:</span> {{sowingDepth}}</p>
+        <p style="color: #333333;"><span style="color: #333333;" style="font-weight: bold;">Germination:</span> {{germination}}</p>
     </div>
     <div class="p-4 mb-3 bg-body-tertiary rounded border-bottom">
         <h5 style="
         color: #5F8B4C;">Care</h5>
-        <p><span style="font-weight: bold;">Pests:</span> {{pests}}</p>
-        <p><span style="font-weight: bold;">Pesticides:</span> {{pesticides}}</p>
+        <p style="color: #333333;"><span style="color: #333333;"style="font-weight: bold;">Pests:</span> {{pests}}</p>
+        <p style="color: #333333;"><span style="color: #333333;"style="font-weight: bold;">Pesticides:</span> {{pesticides}}</p>
     </div>
   </div>

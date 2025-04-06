@@ -96,7 +96,9 @@ rgb(31, 9, 234) 0% ${this.waterPercent}%,
           For tenth item, provide the depth at which to sow for ${this.plantName} plant.
           For eleventh item, provide one type of germination for ${this.plantName} plant, followed by a short description.
           For twelfth item, provide a list of Pests that ${this.plantName} plant will attract in ${this.cityName} location.
-          For thirteenth item, provide a list of pesticides that can be used on ${this.plantName} plant.`,
+          For thirteenth item, provide a list of pesticides that can be used on ${this.plantName} plant.
+          For the fourteenth item, provide me how many gallons of water does ${this.plantName} plant need for its growth in a day. round it to nearest whole number. Please don't give me 1 or 2 gallons everytime.`,
+          
           
         });
         console.log(response.text);
@@ -105,7 +107,6 @@ rgb(31, 9, 234) 0% ${this.waterPercent}%,
         this.punDescription = splitResponse![1];
         this.shortDescription = splitResponse![2];
         this.sunlight = parseInt(splitResponse![3]) ;
-        this.water = parseInt(splitResponse![4]) ;
         this.bestMonthToSow =  splitResponse![4];
         this.sowInstructions = splitResponse![5];
         this.typeOfSoil  = splitResponse![6];
@@ -116,6 +117,8 @@ rgb(31, 9, 234) 0% ${this.waterPercent}%,
         this.germination = splitResponse![11];
         this.pests = splitResponse![12];
         this.pesticides = splitResponse![13];
+        this.water = parseInt(splitResponse![14]) ;
+
 
         this.hourConversation = Math.max((this.sunlight/12))*100;
         this.percent = Math.min(Math.max(this.hourConversation, 0), 100); // clamp 0–100
