@@ -45,8 +45,8 @@ export class PlantComponent implements OnInit {
 
     ngOnInit(): void {
      console.log(this.message);
-     //this.main();
-     this.imageGeneration();
+     this.main();
+     //this.imageGeneration();
     }
     ngOnDestroy() {
       this.subscription.unsubscribe();
@@ -72,40 +72,40 @@ export class PlantComponent implements OnInit {
         )`;
     }
     
-    async imageGeneration() {
-      if(this.message == "default message"){
-        this.message = "strawberry";
-      }
+    // async imageGeneration() {
+    //   if(this.message == "default message"){
+    //     this.message = "strawberry";
+    //   }
 
       
-      const contents =
-      `Generate image of what a ${this.message} plant will look like when its ready for harvest. Show the whole plant.`;
+    //   const contents =
+    //   `Generate image of what a ${this.message} plant will look like when its ready for harvest. Show the whole plant.`;
   
-       var response = await this.ai.models.generateContent({
-        model: "gemini-2.0-flash-exp-image-generation",
-        contents: contents,
-        config: {
-          responseModalities: ["Text", "Image"],
-        },
-      });
-      for (const part of response!.candidates![0].content!.parts!) {
-        // Based on the part type, either show the text or save the image
-        if (part.text) {
-          console.log(part.text);
-        } else if (part.inlineData) {
-          var imageData:any = part.inlineData.data;
-          var buffer = Buffer.from(imageData!, "base64");
+    //    var response = await this.ai.models.generateContent({
+    //     model: "gemini-2.0-flash-exp-image-generation",
+    //     contents: contents,
+    //     config: {
+    //       responseModalities: ["Text", "Image"],
+    //     },
+    //   });
+    //   for (const part of response!.candidates![0].content!.parts!) {
+    //     // Based on the part type, either show the text or save the image
+    //     if (part.text) {
+    //       console.log(part.text);
+    //     } else if (part.inlineData) {
+    //       var imageData:any = part.inlineData.data;
+    //       var buffer = Buffer.from(imageData!, "base64");
           
-          fs.writeFileSync("../../assets/aigeneratedimage.png", buffer!);
-          console.log("Image saved as aigeneratedimage.png");
-        }
-      }
+    //       fs.writeFileSync("../../assets/aigeneratedimage.png", buffer!);
+    //       console.log("Image saved as aigeneratedimage.png");
+    //     }
+    //   }
   
-      // const response = await this.ai.models.generateContent({
-      //   model: "gemini-2.0-flash",
-      //   contents: "Explain how AI works in a few words",
-      // });
-      // console.log(response.text);
-    }
+    //   // const response = await this.ai.models.generateContent({
+    //   //   model: "gemini-2.0-flash",
+    //   //   contents: "Explain how AI works in a few words",
+    //   // });
+    //   // console.log(response.text);
+    // }
     
 }
