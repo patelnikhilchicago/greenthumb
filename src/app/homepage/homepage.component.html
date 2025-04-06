@@ -1,0 +1,37 @@
+
+<div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="search-container">
+            <h2>Ask AI which plants you can grow based on your location</h2>
+            <input type="text" class="form-control search-input" placeholder="Which city do you live in?" [(ngModel)]="searchInput">
+            <i class="fas fa-search search-icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="m-2" style="justify-self: center">
+  <button class="btn btn-lg btn-primary align-items-center" type="submit" (click)="Search()">Search</button>
+  </div>
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm mb-4" *ngFor="let element of searchResultsArray; let i = index">
+          <button class="button-55" role="button">{{element}}</button>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+  </div>
+  
+  <div class="progress-container" [ngStyle]="{'background': progressStyle}">
+    <div class="progress-inner">
+      <div class="sun-icon">☀️</div>
+      <div>{{ sunlight }}%</div>
+    </div>
+    <div class="label">Sunlight</div>
+  </div>

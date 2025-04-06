@@ -1,79 +1,9 @@
+
+
+
+
+<app-header></app-header>
 <main>
-  <div class="container">
-    <header
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-      <div class="col-md-3 mb-2 mb-md-0">
-        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-
-        </a>
-      </div>
-
-      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-4link-secondary">Home</a></li>
-        <li><a href="#" class="nav-link px-4">Reverse Photo Search</a></li>
-        <li><a href="#" class="nav-link px-4">Resources</a></li>
-        <!-- <li><a href="#" class="nav-link px-2">FAQs</a></li>
-        <li><a href="#" class="nav-link px-2">About</a></li> -->
-      </ul>
-
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">Login</button>
-        <button type="button" class="btn btn-primary">Sign-up</button>
-      </div>
-    </header>
-  </div>
-
-  <div class="b-example-divider"></div>
+  <router-outlet></router-outlet>
 </main>
 
-<div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="search-container">
-          <input type="text" class="form-control search-input" placeholder="Which city do you live in?" [(ngModel)]="searchInput">
-          <i class="fas fa-search search-icon"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<button class="btn btn-lg btn-primary" type="submit" (click)="Search()">Search</button>
-
-<div>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm mb-4" *ngFor="let element of searchResultsArray; let i = index">
-        <button class="button-55" role="button">{{element}}</button>
-        
-      </div>
-      
-    </div>
-  </div>
-  <!-- <ul class="list-group">
-    <li class="list-group-item"  *ngFor="let element of searchResultsArray; let i = index">{{element}}</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-  </ul> -->
-</div>
-
-<div class="progress-container" [ngStyle]="{'background': progressStyle}">
-  <div class="progress-inner">
-    <div class="sun-icon">☀️</div>
-    <div>{{ sunlight }}%</div>
-  </div>
-  <div class="label">Sunlight</div>
-</div>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-<router-outlet />
