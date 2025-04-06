@@ -51,7 +51,7 @@ export class ResourcepageComponent {
     {
       title: 'Raised Bed Gardening',
       description: 'Why raised beds are great for backyards and how to build one.',
-      link: 'hhttps://fromsoiltosoul.ca/complete-raised-bed-gardening-guide-for-beginners/',
+      link: 'https://fromsoiltosoul.ca/complete-raised-bed-gardening-guide-for-beginners/',
     },
     {
       title: 'Vertical Gardening Ideas',

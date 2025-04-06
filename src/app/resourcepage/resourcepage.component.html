@@ -15,11 +15,16 @@
         class="col-md-6 mb-4"
         *ngFor="let resource of filteredResources()"
       >
-      <a [href]="resource.link">        
+      <a
+    [href]="resource.link"
+    target="_blank"
+    class="text-decoration-none text-reset d-block h-100"
+  >
+        
         <div class="resource-card p-3">
           <h5 class="resource-title">{{ resource.title }}</h5>
           <p class="resource-desc">{{ resource.description }}</p>
-          <a [href]="resource.link" target="_blank" class="resource-link">View Resource →</a>
+          <div class="resource-link">View Resource →</div>
         </div>
     </a>
       </div>
