@@ -22,7 +22,6 @@ export class PlantComponent implements OnInit {
   punDescription: any = '';
   shortDescription: any = '';
   ai = new GoogleGenAI({ apiKey: "AIzaSyBUiOoBA_vCKxwiqMjdT8VXF5DBMGTqn74" });
-//OpenAI = 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
   sunlight: number = 8;  // percentage (0–100)
   hourConversation:number = Math.max((this.sunlight/12))*100;
   
