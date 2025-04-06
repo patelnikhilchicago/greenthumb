@@ -1,0 +1,32 @@
+<div class="resources-container container py-4">
+    <h2 class="text-center mb-4">🌿 Backyard Cultivation Resources</h2>
+  
+    <div class="search-box mb-4">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchQuery"
+        placeholder="Search for tips, tools, or topics..."
+      />
+    </div>
+  
+    <div class="row">
+      <div
+        class="col-md-6 mb-4"
+        *ngFor="let resource of filteredResources()"
+      >
+      <a [href]="resource.link">        
+        <div class="resource-card p-3">
+          <h5 class="resource-title">{{ resource.title }}</h5>
+          <p class="resource-desc">{{ resource.description }}</p>
+          <a [href]="resource.link" target="_blank" class="resource-link">View Resource →</a>
+        </div>
+    </a>
+      </div>
+    </div>
+  
+    <div *ngIf="filteredResources().length === 0" class="text-center mt-4 text-muted">
+      No resources found for "<strong>{{ searchQuery }}</strong>"
+    </div>
+  </div>
+  
